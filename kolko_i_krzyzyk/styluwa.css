@@ -1,0 +1,68 @@
+body{
+    display: flex;
+    background: linear-gradient(to right, #00AAFF, #00FF6C);
+    align-items: center;
+    justify-content: center;
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+    font-size: 30px;
+    padding: 5px
+    
+}
+
+.plansza {
+    display: grid;
+    grid-template-rows: repeat(3, 200px);
+    grid-template-columns: repeat(3, 200px);
+    grid-gap: 3px;
+    margin-top: 130px;
+    width: 606px;
+    height: 606px;
+    align-self: center;
+}   
+
+.plansza > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 2em;
+    border: 3px solid white;
+    
+}
+
+.plansza > div:hover{
+    background-color: rgba(255, 255, 255, 0.301);
+}
+
+#czyjRuch{
+    text-align: center;
+    position: fixed;
+    top: 10px
+}
+
+#przyciskGra{
+    position: fixed;
+    bottom: 200px;
+}
+
+#kolkoZwyciestwa, #krzyzykZwyciestwa, #remisy{
+    text-align: center;
+    padding: 5px;  
+    position: fixed;
+    font-size: 40px
+}
+
+#kolkoZwyciestwa{
+    left: 30px;
+    top: 300px;
+}
+
+#krzyzykZwyciestwa{
+    right: 30px;
+    top: 300px;
+}
+
+#remisy{
+    bottom: 30px
+}
