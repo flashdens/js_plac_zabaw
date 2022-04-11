@@ -1,0 +1,14 @@
+body{
+    text-align: center;
+    background: linear-gradient(to left, red, #00FF6C);
+    height: 50vh;
+    font-family: "Comic Sans MS";
+}
+
+h1{
+    font-weight: bold;
+}
+
+input{
+    margin: 30px;
+}
