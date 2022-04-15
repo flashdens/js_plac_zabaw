@@ -7,4 +7,4 @@ kolko_i_krzyzyk - mówi samo przez siebie
 
 kamien_papier_nozyce - również
 
-snake - również
+snake - również (wip)
