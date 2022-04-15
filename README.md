@@ -5,4 +5,4 @@ kolorowa_strona - strona z przeróżnymi kolorami
 
 kolko_i_krzyzyk - mówi samo przez siebie
 
-kpn - również
+kamien_papier_nozyce - również
