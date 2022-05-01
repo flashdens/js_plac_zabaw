@@ -2,11 +2,10 @@
 // - podstawy,
 // - ruch głowy węża,
 // - spawn owocu
-// - warunek śmierci jak wąż zderzy się ze sobą
 //
 // do zrobienia:
-// - !!!ruch pozostałych części węża [i-1]!!!
-// - rośnięcie - wytestować
+// - rośnięcie
+// warunek zderzenia - odpluskwić
 // - CSS xD
 
 // ustawianie "płótna"
@@ -19,7 +18,7 @@ const kolorWeza = 'red';
 const kolorObwodu = 'black';
 // współrzędne pól, na których będzie mógł zostać stworzony owoc
 const wartosci = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200,
-    220, 240, 260, 280, 300, 320, 340, 360, 380]
+    220, 240, 260, 280, 300, 320, 340, 360, 380];
 // wyjściowa pozycja węża
 let wonsz = [
     { x: 180, y: 200 }, // [0] - glowa
@@ -36,7 +35,7 @@ const predkosc = 20;
 // klatki na sekundę - wiadomo
 const fps = 5;
 // głowa węża - za jej pomocą np. można się przedłużyć, albo zginąć - zbędna, ale mi się podoba
-const glowa = wonsz[0];
+let glowa = wonsz[0];
 // kierunek - w zalezności od niego koordynaty węża będą poprawnie się zmieniać - domyślnie leci w prawo
 // gora - 0, lewo - 1, dol - 2, prawo - 3
 let kierunek = 1;
@@ -47,7 +46,7 @@ let graTrwa = true;
 // no wiadomo, jakiś wynik by się przydał
 let wynik = 0
 
-// nasłuchiwanie wciśnięć klawiszy
+// nasłuchiwanie wciśnięć klawiszy i określanie kierunku
 document.addEventListener('keydown', e => {
     switch (e.key) {
         case 'ArrowUp':
@@ -79,9 +78,9 @@ document.addEventListener('keydown', e => {
 function czyPorazka() {
     let czyZderzenie = false;
     for (let i = 1; i < wonsz.length; i++) {
-        if (glowa.x && glowa.y === wonsz[i].x && wonsz[i].y) {
-            let czyZderzenie = true;
-        }
+        // if (glowa.x && glowa.y === wonsz[i].x && wonsz[i].y) {
+        //     let czyZderzenie = true;
+        // }
     }
     if (glowa.x < 0 || glowa.x > 400 || glowa.y < 0 || glowa.y > 400 || czyZderzenie === true) {
         graTrwa = false;
@@ -120,11 +119,8 @@ function narysujWeza() {
 // funkcja robiąca owoc
 function czyZrobicOwoc() {
     if (owocNaPlanszy === false) {
-        console.log("Trzeba zrobic owoc!");
         owoc.x = wartosci[Math.floor(Math.random() * wartosci.length)];
         owoc.y = wartosci[Math.floor(Math.random() * wartosci.length)];
-        console.log(owoc.x);
-        console.log(owoc.y);
         owocNaPlanszy = true;
     }
 }
@@ -133,12 +129,12 @@ function czyZrobicOwoc() {
 function rosniecie() {
     if (glowa.x === owoc.x && glowa.y === owoc.y) {
         console.log("gotem!");
-        wonsz.unshift(owoc.x, owoc.y);
         wynik++;
-        console.log(wonsz.length);
-        for (let i = 0; i < wonsz.length; i++) {
-            wonsz[i] = wonsz[i + 1];
-        }
+        console.log(wonsz);
+        console.log(owoc);
+        wonsz.length++;
+        wonsz[wonsz.length - 1].x = ({ x: ostatniaKlatka[wonsz.length - 2].x, y: ostatniaKlatka[wonsz.length - 2].y });
+        console.log(wonsz);
         owocNaPlanszy = false;
     }
 }
@@ -179,9 +175,9 @@ function ruchWeza() {
 
 // funkcja zapisuje klatkę, ruch węża w kolejnej będzie odbywał się względem niej
 function zapiszKlatke() {
-    for (let i = 0; i < wonsz.length; i++) {
-        ostatniaKlatka.push(wonsz[i].x, wonsz[i].y);
-        console.log(ostatniaKlatka[0].x, ostatniaKlatka[0].y);
+    for (let i = 0; i < wonsz.length - 1; i++) {
+        // z tym się tyle męczyłem. ja pierdolę
+        ostatniaKlatka[i] = ({ x: wonsz[i].x, y: wonsz[i].y });
     }
 }
 
@@ -202,7 +198,6 @@ function klatka() {
 setInterval(function () {
     if (graTrwa) {
         klatka();
-        console.log(wonsz[0], wonsz[1], wonsz[2]);
     }
 }
     , 1000 / fps);
