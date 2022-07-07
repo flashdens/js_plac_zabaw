@@ -4,15 +4,13 @@ const kolorTla = 'cyan';
 const obwodPlanszy = 'black';
 const kolorWeza = 'red';
 const kolorObwodu = 'black';
-const wartosci = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200,
-    220, 240, 260, 280, 300, 320, 340, 360, 380];
+const wartosci = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380];
 let wonsz = [
     { x: 180, y: 200 }, // [0] - glowa
     { x: 200, y: 200 }, // [1]
     { x: 220, y: 200 } // etc.
 ];
 let owoc = [];
-const predkosc = 20;
 const fps = 10;
 let glowa = wonsz[0];
 let kierunek = 1;
