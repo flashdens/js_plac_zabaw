@@ -1,12 +1,16 @@
+import {picker} from "./jscolor";
 const losujKolorPrzycisk = document.getElementById('losujKolorPrzycisk');
 const zamienKoloryPrzycisk = document.getElementById('zamienKoloryPrzycisk');
 const obecnyKolorTekst = document.getElementById('obecnyKolorTekst');
 const komplementarnyKolorTekst = document.getElementById('komplementarnyKolorTekst');
 const pudlo = document.getElementById('pudlo');
 const rgbGuzik = document.getElementById('rgbGuzik');
-let rParametr = parseInt(document.getElementById('rParametr').value);
-let gParametr = parseInt(document.getElementById('gParametr').value);
-let bParametr = parseInt(document.getElementById('bParametr').value);
+const pickerGuzik = document.getElementById('pickerGuzik');
+const kolorRgb = document.getElementById('kolorRgb');
+const komplementarnyKolorRgb = document.getElementById('komplementarnyKolorRgb'); 
+const rParametr = parseInt(document.getElementById('rParametr').value);
+const gParametr = parseInt(document.getElementById('gParametr').value);
+const bParametr = parseInt(document.getElementById('bParametr').value);
 let r = 0;
 let g = 0;
 let b = 0;
@@ -51,6 +55,8 @@ function wstawWartosci () {
   pudlo.style.background = colKomplementarny;
   obecnyKolorTekst.innerHTML = 'Obecny kolor tła to: #' + `${r16}` + `${g16}` + `${b16}`;
   komplementarnyKolorTekst.innerHTML = 'Komplemenatrny kolor tła to: #' + `${r16Komplementarny}` + `${g16Komplementarny}` + `${b16Komplementarny}`;
+  kolorRgb.innerHTML = 'Kolor tła w formacie rgb to: #' + `rgb(${r},${g},${b})`;
+  komplementarnyKolorRgb.innerHTML = 'Kolor komplemenatrny tła w formacie rgb to: #' + `rgb(${rKomplementarny},${gKomplementarny},${bKomplementarny})`;
 }
 
 function zamienKolory () {
@@ -94,6 +100,10 @@ losujKolorPrzycisk.addEventListener('click', () => {
 pudlo.addEventListener('click', () => {
   alert('e');
 });
+
+pickerGuzik.addEventListener('click', () => {
+  alert('coming soon')
+})
 
 rgbGuzik.addEventListener('click', () => {  
   rParametr = parseInt(document.getElementById('rParametr').value);

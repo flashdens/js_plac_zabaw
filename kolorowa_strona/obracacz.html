@@ -14,6 +14,7 @@
     </style>
 </head>
 
+<body>
 <h1>BARDZO KOLOROWA STRONA.</h1>
 <button id="losujKolorPrzycisk">
     <h2>LOSUJ KOLOR!</h2>
@@ -21,28 +22,39 @@
 <button id="zamienKoloryPrzycisk">
     <h2>ZAMIEŃ KOLORY!</h2>
 </button>
+<h3 id="kolorRgb">
+    Kolor tła w formacie rgb to: rgb(0,0,0)
+</h3>
 <h3 id="obecnyKolorTekst">
     Obecny kolor tła to: #FFFFFF
+</h3>
+<h3 id="komplementarnyKolorRgb">
+    Komplementarny kolor w formacie rgb to: rgb(0,0,0)
 </h3>
 <h3 id="komplementarnyKolorTekst">
     Komplementarny kolor do tła to: #FFFFFF
 </h3>
 <button id="pudlo">
+</button><br><br>
 
-</button>
-
-<p>Wprowadź kolor w systemie rgb (np. 246, 48, 153)</p>
+<h3>Wprowadź kolor w systemie rgb (np. 246, 48, 153)</h3>
 <input type="number" id="rParametr" min="0" max="255">
 <input type="number" id="gParametr" min="0" max="255">
 <input type="number" id="bParametr" min="0" max="255">
 <button id="rgbGuzik">
-    wyślij
-</button>
+    wyślij 
+</button> <br><br>
+<h3>
+Wprowadź kolor za pomocą pickera (coming soon!):<br> <input data-jscolor="{}" value="#3399FF">
+<button id="pickerGuzik">
+    wyślij 
+</button> <br>
+</h3>
+
 </body>
 <footer>
     v 1.1.
 </footer>
-<script src="./kolorowaStronka.js">
-</script>
-
+<script src="./kolorowaStronka.js"></script>
+<script src="./jscolor.js"></script>
 </html>
