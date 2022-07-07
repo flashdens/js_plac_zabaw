@@ -1,4 +1,3 @@
-import {picker} from "./jscolor";
 const losujKolorPrzycisk = document.getElementById('losujKolorPrzycisk');
 const zamienKoloryPrzycisk = document.getElementById('zamienKoloryPrzycisk');
 const obecnyKolorTekst = document.getElementById('obecnyKolorTekst');
