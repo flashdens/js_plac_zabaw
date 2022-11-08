@@ -1,11 +1,20 @@
 body {
-    display: flex;
-    background-color: aqua;
+    background: linear-gradient(to right, fuchsia, white);
+    font-family: "Comic Sans MS";
+    text-align: center;     
 }
+
+
 
 #plansza {
     display: flex;
     border: 3px solid black;
     align-items: center;
     justify-content: center;
+}
+
+#divPlanszowy {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
 }

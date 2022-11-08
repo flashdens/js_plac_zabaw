@@ -1,9 +1,13 @@
 const plansza = document.getElementById('plansza');
 const rysowanko = plansza.getContext('2d');
-const kolorTla = 'cyan';
-const obwodPlanszy = 'black';
-const kolorWeza = 'red';
-const kolorObwodu = 'black';
+const licznikPunktowHTML = document.getElementById('licznikPunktowHTML');
+const najlepszyWynikHTML = document.getElementById('najlepszyWynikHTML');
+const iloscGierHTML = document.getElementById('licznikGierHTML');
+const miejsceNaGuzik = document.getElementById('miejsceNaGuzik');
+const kolorTla = 'black';
+const obwodPlanszy = 'white';
+const kolorWeza = 'green';
+const kolorObwodu = 'white';
 const wartosci = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360, 380];
 let wonsz = [
     { x: 180, y: 200 }, // [0] - glowa
@@ -16,9 +20,14 @@ let glowa = wonsz[0];
 let kierunek = 1;
 let owocNaPlanszy = false;
 let graTrwa = true;
-let wynik = (wonsz.length) - 4;
 let px = 10;
 let py = 0;
+let najlepszyWynik = JSON.parse(localStorage.getItem("najlepszyWynik"));
+najlepszyWynikHTML.innerHTML = najlepszyWynik;
+let licznikGier = JSON.parse(localStorage.getItem("licznikGier"));
+licznikGierHTML.innerHTML = licznikGier;
+console.log(localStorage);
+
 
 document.addEventListener('keydown', e => {
     switch (e.key) {
@@ -42,6 +51,8 @@ document.addEventListener('keydown', e => {
                 kierunek = 3;
             }
             break;
+        case 'r':
+            resetujGre();
     }
 })
 
@@ -51,9 +62,39 @@ function czyPorazka() {
         if ((glowa.x === wonsz[i].x && glowa.y === wonsz[i].y))
             czyZderzenie = true;
     if (glowa.x < 0 || glowa.x > 399 || glowa.y < 0 || glowa.y > 399 || czyZderzenie === true) {
+        miejsceNaGuzik.innerHTML += `<button> RESTART </button>`;
+        miejsceNaGuzik.addEventListener('click', function () {
+        resetujGre();
+    })    
         graTrwa = false;
+        if (wonsz.length - 4 > najlepszyWynik){
+            najlepszyWynik = wonsz.length - 4;
+            najlepszyWynikHTML.innerHTML = najlepszyWynik;
+        }
         alert("Przegrałeś! Twój wynik to: " + `${wonsz.length - 4}` + ".");
+        localStorage.setItem("najlepszyWynik", JSON.stringify(najlepszyWynik));
+        localStorage.setItem("licznikGier", JSON.stringify(licznikGier));
     }
+}
+
+function ustawDomyslneWartosci () {
+    wonsz = [
+        { x: 180, y: 200 }, // [0] - glowa
+        { x: 200, y: 200 }, // [1]
+        { x: 220, y: 200 } // etc.
+    ];
+    owoc = [];
+    glowa = wonsz[0];
+    kierunek = 1;
+    owocNaPlanszy = false;
+    graTrwa = true;
+}
+
+function resetujGre() {
+    ustawDomyslneWartosci();
+    miejsceNaGuzik.innerHTML = ``;
+    licznikGier++;
+    iloscGierHTML.innerHTML = licznikGier;
 }
 
 function wyczyscPlansze() {
@@ -126,6 +167,8 @@ function ruchWeza() {
         wonsz.length--;
 }
 
+
+
 function klatka() {
     czyPorazka();
     ruchWeza();
@@ -134,6 +177,7 @@ function klatka() {
     czyZrobicOwoc();
     narysujOwoc();
     rosniecie();
+    licznikPunktowHTML.innerHTML = wonsz.length - 4;
 };
 
 
